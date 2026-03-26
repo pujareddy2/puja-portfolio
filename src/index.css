@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Orbitron", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #050505;
+  --color-glow-primary: #ffffff;
+  --color-glow-secondary: #e0e0e0;
+  --color-glow-highlight: #ffffff;
+  --color-text-primary: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary font-sans overflow-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-wider;
+  }
+}
+
+.glass-panel {
+  @apply bg-black/40 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)];
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  z-index: 100;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.1;
+  position: absolute;
+  bottom: 100%;
+  animation: scanline 6s linear infinite;
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  80% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
+
+.neon-border {
+  @apply border border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.1)];
+}
+
+.neon-text {
+  @apply text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)];
+}
+
+.text-glow-primary {
+  @apply text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)];
+}
+
+/* Custom scrollbar for panels */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/20 rounded-full hover:bg-white/40 transition-colors;
+}
