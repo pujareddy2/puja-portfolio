@@ -1,12 +1,10 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://mpujaportfolio.netlify.app/" />
-</div>
+
 
 # Run and deploy your AI Studio app
 
 This contains everything you need to run your app locally.
 
-View your app in AI Studio: https://ai.studio/apps/05199072-6ea2-459e-9d97-499983022984
+View your app in AI Studio: https://mpujaportfolio.netlify.app/
 
 ## Run Locally
 
