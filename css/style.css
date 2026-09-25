@@ -1,0 +1,767 @@
+/* ==========================================================================
+   Custom CSS3 Design System & Responsive Styles
+   Author: Puja Midde (Roll No: 160623733160)
+   Subject: Full Stack Development [SPC0701CS]
+   ========================================================================== */
+
+/* --------------------------------------------------
+   1. CSS Custom Properties / Variables (Theme System)
+   -------------------------------------------------- */
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Inter', sans-serif;
+
+  /* Light Theme Palette */
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  
+  /* Primary Accent & Glows */
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-subtle: #eef2ff;
+  --secondary-color: #06b6d4;
+  --accent-color: #8b5cf6;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.15);
+
+  --transition-speed: 0.3s;
+  --navbar-height: 72px;
+}
+
+[data-theme="dark"], [data-bs-theme="dark"] {
+  /* Dark Theme Palette (Sleek & Ultra High Contrast) */
+  --bg-body: #090d16;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1a2234;
+  --bg-card: #131c2e;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #26334d;
+
+  --primary-color: #6366f1;
+  --primary-hover: #818cf8;
+  --primary-subtle: rgba(99, 102, 241, 0.2);
+  --secondary-color: #38bdf8;
+  --accent-color: #c084fc;
+
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 10px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 12px 30px -4px rgb(0 0 0 / 0.6);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.3);
+}
+
+/* --------------------------------------------------
+   2. Global Resets & Base Typography
+   -------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.65;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3, 
+[data-theme="dark"] h4, 
+[data-theme="dark"] h5, 
+[data-theme="dark"] h6 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-secondary {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .lead {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .text-dark-emphasis {
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bg-body {
+  background-color: var(--bg-surface-elevated) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .bg-surface {
+  background-color: var(--bg-surface) !important;
+}
+
+[data-theme="dark"] .border {
+  border-color: var(--border-color) !important;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* --------------------------------------------------
+   3. Navbar Styles
+   -------------------------------------------------- */
+.custom-navbar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+  z-index: 1030;
+}
+
+.custom-navbar .navbar-brand {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.custom-navbar .navbar-brand .brand-badge {
+  font-size: 0.75rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: #ffffff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.custom-navbar .nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: 8px;
+  transition: all var(--transition-speed) ease;
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link.active {
+  color: var(--primary-color) !important;
+  background-color: var(--primary-subtle);
+}
+
+[data-theme="dark"] .custom-navbar .nav-link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .custom-navbar .nav-link:hover,
+[data-theme="dark"] .custom-navbar .nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(99, 102, 241, 0.25);
+}
+
+.theme-toggle-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--primary-subtle);
+  color: var(--primary-color);
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------
+   4. Section Headers & Layout Utilities
+   -------------------------------------------------- */
+section {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-color);
+  background-color: var(--primary-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.35rem;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto 3rem auto;
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------- */
+.hero-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at 80% 20%, var(--primary-subtle) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+  padding: 6rem 0 4rem 0;
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title .text-gradient {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typing-container {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+[data-theme="dark"] .typing-container {
+  color: #e2e8f0;
+}
+
+.typed-cursor {
+  color: var(--primary-color);
+  font-weight: 700;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.hero-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-avatar-box {
+  width: 290px;
+  height: 290px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 5px;
+  box-shadow: var(--shadow-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 27px;
+  display: block;
+}
+
+.hero-avatar-inner {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-surface);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-floating-badge {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  padding: 0.65rem 1.1rem;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------
+   6. Custom Cards (Projects, Experience, Skills)
+   -------------------------------------------------- */
+.custom-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.85rem;
+  transition: all var(--transition-speed) ease;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+/* Real-Time Project UI Browser Mockup Frame */
+.project-browser-frame {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.browser-header {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.45rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.browser-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background-color: #ef4444; }
+.dot-yellow { background-color: #f59e0b; }
+.dot-green { background-color: #10b981; }
+
+.browser-url-bar {
+  font-family: 'JetBrains Mono', monospace, sans-serif;
+  font-size: 0.68rem;
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  color: var(--text-muted);
+  max-width: 140px;
+}
+
+.browser-body {
+  background: linear-gradient(135deg, var(--bg-surface-elevated), var(--bg-card));
+  min-height: 80px;
+}
+
+.live-indicator {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulse-green 1.5s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+.project-badge {
+  font-size: 0.75rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 8px;
+  background-color: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .project-badge {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+/* Filter Controls */
+.filter-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 2.75rem;
+}
+
+.filter-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.55rem 1.35rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+[data-theme="dark"] .filter-btn {
+  color: #cbd5e1;
+  background: #111827;
+  border-color: #26334d;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+
+/* --------------------------------------------------
+   7. Table Styling (Education Section)
+   -------------------------------------------------- */
+.custom-table-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.custom-table {
+  margin-bottom: 0;
+  color: var(--text-primary);
+  background-color: transparent;
+}
+
+.custom-table thead {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: #ffffff;
+}
+
+.custom-table thead th {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 1.15rem 1.35rem;
+  border: none;
+  font-size: 0.95rem;
+  color: #ffffff !important;
+}
+
+.custom-table tbody td {
+  padding: 1.15rem 1.35rem;
+  border-color: var(--border-color);
+  vertical-align: middle;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .custom-table tbody td {
+  background-color: var(--bg-surface);
+  color: #f8fafc;
+}
+
+.custom-table tbody tr:nth-of-type(even) td {
+  background-color: var(--bg-surface-elevated);
+}
+
+[data-theme="dark"] .custom-table tbody tr:nth-of-type(even) td {
+  background-color: #151f33;
+}
+
+.custom-table tbody tr:hover td {
+  background-color: var(--primary-subtle);
+}
+
+[data-theme="dark"] .custom-table tbody tr:hover td {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+.score-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  padding: 0.4rem 0.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  display: inline-block;
+}
+
+/* --------------------------------------------------
+   8. Experience Timeline
+   -------------------------------------------------- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7px;
+  width: 2px;
+  background: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.25rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 0.25rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid var(--bg-body);
+  box-shadow: 0 0 0 3px var(--primary-subtle);
+}
+
+/* --------------------------------------------------
+   9. Form Controls & Validation
+   -------------------------------------------------- */
+.form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+[data-theme="dark"] .form-label {
+  color: #f8fafc;
+}
+
+.form-control {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  transition: all var(--transition-speed) ease;
+}
+
+[data-theme="dark"] .form-control {
+  background-color: #1a2336;
+  border-color: #2b3a56;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: #64748b;
+}
+
+.form-control:focus {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-subtle);
+}
+
+[data-theme="dark"] .form-control:focus {
+  background-color: #151d2e;
+  color: #ffffff;
+}
+
+.form-control.is-invalid {
+  border-color: var(--danger-color) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+.form-control.is-valid {
+  border-color: var(--success-color) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.invalid-feedback {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--danger-color);
+  margin-top: 0.35rem;
+}
+
+/* --------------------------------------------------
+   10. Modal Customization
+   -------------------------------------------------- */
+.custom-modal .modal-content {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .custom-modal .modal-content {
+  background-color: #111827;
+  color: #f8fafc;
+  border-color: #26334d;
+}
+
+.custom-modal .modal-header {
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.custom-modal .modal-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 1.25rem 1.5rem;
+}
+
+/* --------------------------------------------------
+   11. Footer
+   -------------------------------------------------- */
+footer {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  padding: 3.5rem 0 2.25rem 0;
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] footer {
+  background-color: #0d131f;
+  border-color: #1e293b;
+}
+
+/* --------------------------------------------------
+   12. CSS3 Media Queries (Mobile-First Responsiveness)
+   -------------------------------------------------- */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-section {
+    text-align: center;
+    padding: 4.5rem 0;
+  }
+  .hero-avatar-wrapper {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 3.75rem 0;
+  }
+  .hero-title {
+    font-size: 2.15rem;
+  }
+  .section-title {
+    font-size: 1.9rem;
+  }
+  .form-card {
+    padding: 1.75rem;
+  }
+  .custom-table thead th,
+  .custom-table tbody td {
+    padding: 0.85rem 0.65rem;
+    font-size: 0.86rem;
+  }
+  .filter-btn {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .hero-avatar-box {
+    width: 230px;
+    height: 230px;
+  }
+  .hero-floating-badge {
+    bottom: -10px;
+    right: 0px;
+  }
+}
